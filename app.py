@@ -159,61 +159,27 @@ if st.button("🚀 Predict Churn"):
     
     # Customer Profile Comparison Chart
     st.markdown("#### Customer Profile Analysis")
-    profile_col1, profile_col2 = st.columns(2)
     
-    with profile_col1:
-        # Create a simple bar chart for numerical features
-        fig_profile = go.Figure()
-        
-        fig_profile.add_trace(go.Bar(
-            y=['Credit Score', 'Age', 'Tenure', 'Balance', 'Estimated Salary'],
-            x=[CreditScore, Age, Tenure, Balance/1000, EstimatedSalary/1000],
-            orientation='h',
-            marker=dict(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']),
-            text=['%d' % CreditScore, '%d yrs' % Age, '%d yrs' % Tenure, '$%.0fK' % (Balance/1000), '$%.0fK' % (EstimatedSalary/1000)],
-            textposition='outside'
-        ))
-        
-        fig_profile.update_layout(
-            height=350,
-            title="Customer Attributes",
-            xaxis_title="Value",
-            showlegend=False,
-            margin=dict(l=150, r=100, t=50, b=50)
-        )
-        st.plotly_chart(fig_profile, use_container_width=True, key="profile_chart")
+    # Create a simple bar chart for numerical features
+    fig_profile = go.Figure()
     
-    with profile_col2:
-        # Create categorical features visualization
-        fig_categorical = go.Figure()
-        
-        categories = {
-            'Credit Card': 'Yes' if HasCrCard == 1 else 'No',
-            'Active Member': 'Yes' if IsActiveMember == 1 else 'No',
-            'Gender': gender,
-            'Geography': geography
-        }
-        
-        categorical_text = "\n".join([f"<b>{k}:</b> {v}" for k, v in categories.items()])
-        
-        fig_categorical.add_trace(go.Table(
-            header=dict(
-                values=['<b>Feature</b>', '<b>Value</b>'],
-                fill_color='#1f77b4',
-                align='left',
-                font=dict(color='white', size=12)
-            ),
-            cells=dict(
-                values=[list(categories.keys()), list(categories.values())],
-                fill_color='#f0f0f0',
-                align='left',
-                font=dict(size=11),
-                height=30
-            )
-        ))
-        
-        fig_categorical.update_layout(height=350, margin=dict(l=10, r=10, t=50, b=10))
-        st.plotly_chart(fig_categorical, use_container_width=True, key="categorical_chart")
+    fig_profile.add_trace(go.Bar(
+        y=['Credit Score', 'Age', 'Tenure', 'Balance', 'Estimated Salary'],
+        x=[CreditScore, Age, Tenure, Balance/1000, EstimatedSalary/1000],
+        orientation='h',
+        marker=dict(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']),
+        text=['%d' % CreditScore, '%d yrs' % Age, '%d yrs' % Tenure, '$%.0fK' % (Balance/1000), '$%.0fK' % (EstimatedSalary/1000)],
+        textposition='outside'
+    ))
+    
+    fig_profile.update_layout(
+        height=350,
+        title="Customer Attributes",
+        xaxis_title="Value",
+        showlegend=False,
+        margin=dict(l=150, r=100, t=50, b=50)
+    )
+    st.plotly_chart(fig_profile, use_container_width=True, key="profile_chart")
 
     st.divider()
 
