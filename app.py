@@ -6,13 +6,15 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Version 2.0 - Enhanced visualizations
 # =========================
 # PAGE CONFIG
 # =========================
 st.set_page_config(
     page_title="Bank Churn Prediction",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={"About": "Bank Churn Prediction ML App"}
 )
 
 # =========================
@@ -142,7 +144,7 @@ if st.button("🚀 Predict Churn"):
             }
         ))
         fig_gauge.update_layout(height=380, margin=dict(l=0, r=0, t=50, b=0))
-        st.plotly_chart(fig_gauge, use_container_width=True, key="gauge_chart")
+        st.plotly_chart(fig_gauge, use_container_width=True)
     
     with col2:
         st.markdown("#### Risk Distribution")
@@ -155,7 +157,7 @@ if st.button("🚀 Predict Churn"):
             hoverinfo='label+value+percent'
         )])
         fig_pie.update_layout(height=380, margin=dict(l=0, r=0, t=50, b=0))
-        st.plotly_chart(fig_pie, use_container_width=True, key="pie_chart")
+        st.plotly_chart(fig_pie, use_container_width=True)
     
     # Customer Profile Comparison Chart
     st.markdown("#### Customer Profile Analysis")
@@ -179,7 +181,7 @@ if st.button("🚀 Predict Churn"):
         showlegend=False,
         margin=dict(l=150, r=100, t=50, b=50)
     )
-    st.plotly_chart(fig_profile, use_container_width=True, key="profile_chart")
+    st.plotly_chart(fig_profile, use_container_width=True)
 
     st.divider()
 
