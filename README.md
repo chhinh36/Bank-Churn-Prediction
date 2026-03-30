@@ -6,7 +6,7 @@ This project is a **Machine Learning web application** built with **Streamlit** 
 
 ## 🚀 Live Demo
 
-👉 * Streamlit link here* https://churnappapp-fbdhuvdqgv36zsxfrnevb7.streamlit.app/
+👉 **Live App:** https://churnappapp-lxqjvxirn1.streamlit.app/
 
 ---
 
@@ -19,57 +19,57 @@ This project uses a **classification model (XGBoost)** to predict churn probabil
 
 ## 🧠 Model Details
 
-* Algorithm: **XGBoost Classifier**
-* Evaluation: Classification Report (Precision, Recall, F1-score)
-* Threshold: **0.47** (custom decision boundary)
+- Algorithm: **XGBoost Classifier**
+- Evaluation: Classification Report (Precision, Recall, F1-score)
+- Threshold: **0.47** (custom decision boundary)
 
 ---
 
 ## 📊 Features Used
 
-* Credit Score
-* Age
-* Tenure
-* Balance
-* Number of Products
-* Has Credit Card
-* Is Active Member
-* Estimated Salary
-* Geography (One-Hot Encoded)
-* Gender (One-Hot Encoded)
+- Credit Score
+- Age
+- Tenure
+- Balance
+- Number of Products
+- Has Credit Card
+- Is Active Member
+- Estimated Salary
+- Geography (One-Hot Encoded)
+- Gender (One-Hot Encoded)
 
 ---
 
 ## ⚙️ Data Processing
 
-* Removed unnecessary columns:
+- Removed unnecessary columns:
+  - `id`, `CustomerId`, `Surname`
 
-  * `id`, `CustomerId`, `Surname`
-* Applied **One-Hot Encoding**:
+- Applied **One-Hot Encoding**:
+  - Geography → France, Germany, Spain
+  - Gender → Male, Female
 
-  * Geography → France, Germany, Spain
-  * Gender → Male, Female
-* Ensured feature alignment between training and prediction
+- Ensured feature alignment between training and prediction
 
 ---
 
 ## 🖥️ App Features
 
-* Interactive user input form
-* Real-time churn prediction
-* Probability output
-* Clear result display (Churn / Not Churn)
+- Interactive user input form
+- Real-time churn prediction
+- Probability output
+- Clear result display (Churn / Not Churn)
 
 ---
 
 ## 🛠️ Tech Stack
 
-* Python
-* Pandas
-* Scikit-learn
-* XGBoost
-* Streamlit
-* Joblib
+- Python
+- Pandas
+- Scikit-learn
+- XGBoost
+- Streamlit
+- Joblib
 
 ---
 
@@ -117,16 +117,13 @@ This app is deployed using **Streamlit Cloud**.
 
 ## 📈 Future Improvements
 
-* Add model explainability (SHAP)
-* Improve UI design
-* Add more features for better accuracy
-* Hyperparameter tuning
+- Add model explainability (SHAP)
+- Improve UI design
+- Add more features for better accuracy
+- Hyperparameter tuning
 
 ---
 
 ## 🙌 Author
 
 **Sambat**
-
-
-
