@@ -118,50 +118,49 @@ if st.button("🚀 Predict Churn"):
 
     st.divider()
 
-    # Visualization: Gauge Chart
+    # Visualization: Gauge Chart and Pie Chart
+    st.write("---")
+    st.subheader("📈 Visualizations")
+    
     col1, col2 = st.columns(2)
     
     with col1:
         st.write("**Churn Probability Gauge**")
-        fig_gauge = go.Figure(go.Indicator(
-            mode="gauge+number+delta",
-            value=prob * 100,
-            domain={'x': [0, 1], 'y': [0, 1]},
-            title={'text': "Churn Risk (%)"},
-            delta={'reference': threshold * 100},
-            gauge={
-                'axis': {'range': [0, 100]},
-                'bar': {'color': "#ef553b" if pred == 1 else "#00cc96"},
-                'steps': [
-                    {'range': [0, 25], 'color': "#d4edda"},
-                    {'range': [25, 50], 'color': "#fff3cd"},
-                    {'range': [50, 75], 'color': "#f8d7da"},
-                    {'range': [75, 100], 'color': "#f5c6cb"}
-                ],
-                'threshold': {
-                    'line': {'color': "red", 'width': 3},
-                    'thickness': 0.75,
-                    'value': threshold * 100
+        try:
+            fig_gauge = go.Figure(go.Indicator(
+                mode="gauge+number",
+                value=prob * 100,
+                title={'text': "Churn Risk %"},
+                gauge={
+                    'axis': {'range': [0, 100]},
+                    'bar': {'color': "#ef553b" if pred == 1 else "#00cc96"},
+                    'steps': [
+                        {'range': [0, 25], 'color': "#e8f5e9"},
+                        {'range': [25, 50], 'color': "#fff9c4"},
+                        {'range': [50, 75], 'color': "#ffe0b2"},
+                        {'range': [75, 100], 'color': "#ffcdd2"}
+                    ]
                 }
-            }
-        ))
-        fig_gauge.update_layout(height=300)
-        st.plotly_chart(fig_gauge, use_container_width=True)
+            ))
+            fig_gauge.update_layout(height=350, margin=dict(l=10, r=10, t=30, b=10))
+            st.plotly_chart(fig_gauge, use_container_width=True)
+        except Exception as e:
+            st.error(f"Error displaying gauge: {e}")
     
     with col2:
         st.write("**Risk Distribution**")
-        risk_data = {
-            'Risk Category': ['Churn Risk', 'Retention Risk'],
-            'Probability': [prob * 100, (1 - prob) * 100]
-        }
-        fig_pie = go.Figure(data=[go.Pie(
-            labels=risk_data['Risk Category'],
-            values=risk_data['Probability'],
-            marker=dict(colors=['#ef553b', '#00cc96']),
-            textinfo='label+percent'
-        )])
-        fig_pie.update_layout(height=300)
-        st.plotly_chart(fig_pie, use_container_width=True)
+        try:
+            fig_pie = go.Figure(data=[go.Pie(
+                labels=['Churn Risk', 'Retention Risk'],
+                values=[prob * 100, (1 - prob) * 100],
+                marker=dict(colors=['#ef553b', '#00cc96']),
+                textinfo='label+percent',
+                hoverinfo='label+percent'
+            )])
+            fig_pie.update_layout(height=350, margin=dict(l=10, r=10, t=30, b=10))
+            st.plotly_chart(fig_pie, use_container_width=True)
+        except Exception as e:
+            st.error(f"Error displaying pie chart: {e}")
 
     st.divider()
 
