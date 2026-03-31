@@ -161,6 +161,6 @@ if st.button("🚀 Predict Churn"):
     st.write("**Customer Profile Summary**")
     summary_df = pd.DataFrame({
         'Attribute': ['Credit Score', 'Age', 'Tenure', 'Balance', 'Num Products', 'Active Member', 'Has Credit Card'],
-        'Value': [CreditScore, Age, Tenure, f"${Balance:,.0f}", NumOfProducts, "Yes" if IsActiveMember else "No", "Yes" if HasCrCard else "No"]
+        'Value': [str(CreditScore), str(Age), str(Tenure), f"${Balance:,.0f}", str(NumOfProducts), "Yes" if IsActiveMember else "No", "Yes" if HasCrCard else "No"]
     })
     st.dataframe(summary_df, use_container_width=True, hide_index=True)
