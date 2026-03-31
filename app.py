@@ -120,68 +120,28 @@ if st.button("🚀 Predict Churn"):
 
     st.divider()
 
-    # Visualization: Gauge Chart and Pie Chart
+    # Visualization: Gauge Chart
     st.write("---")
     st.subheader("📈 Visualizations")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.markdown("#### Churn Risk Gauge")
-        fig_gauge = go.Figure(go.Indicator(
-            mode="gauge+number",
-            value=prob * 100,
-            title={'text': "Churn Risk %"},
-            gauge={
-                'axis': {'range': [0, 100]},
-                'bar': {'color': "#ef553b" if pred == 1 else "#00cc96"},
-                'steps': [
-                    {'range': [0, 25], 'color': "#e8f5e9"},
-                    {'range': [25, 50], 'color': "#fff9c4"},
-                    {'range': [50, 75], 'color': "#ffe0b2"},
-                    {'range': [75, 100], 'color': "#ffcdd2"}
-                ]
-            }
-        ))
-        fig_gauge.update_layout(height=380, margin=dict(l=0, r=0, t=50, b=0))
-        st.plotly_chart(fig_gauge, use_container_width=True)
-    
-    with col2:
-        st.markdown("#### Risk Distribution")
-        fig_pie = go.Figure(data=[go.Pie(
-            labels=['Churn Risk', 'Retention Risk'],
-            values=[prob * 100, (1 - prob) * 100],
-            marker=dict(colors=['#ef553b', '#00cc96']),
-            textposition='inside',
-            textinfo='label+percent',
-            hoverinfo='label+value+percent'
-        )])
-        fig_pie.update_layout(height=380, margin=dict(l=0, r=0, t=50, b=0))
-        st.plotly_chart(fig_pie, use_container_width=True)
-    
-    # Customer Profile Comparison Chart
-    st.markdown("#### Customer Profile Analysis")
-    
-    # Create a simple bar chart for numerical features
-    fig_profile = go.Figure()
-    
-    fig_profile.add_trace(go.Bar(
-        y=['Credit Score', 'Age', 'Tenure', 'Balance', 'Estimated Salary'],
-        x=[CreditScore, Age, Tenure, Balance/1000, EstimatedSalary/1000],
-        orientation='h',
-        marker=dict(color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']),
-        text=['%d' % CreditScore, '%d yrs' % Age, '%d yrs' % Tenure, '$%.0fK' % (Balance/1000), '$%.0fK' % (EstimatedSalary/1000)],
-        textposition='outside'
+    st.markdown("#### Churn Risk Gauge")
+    fig_gauge = go.Figure(go.Indicator(
+        mode="gauge+number",
+        value=prob * 100,
+        title={'text': "Churn Risk %"},
+        gauge={
+            'axis': {'range': [0, 100]},
+            'bar': {'color': "#ef553b" if pred == 1 else "#00cc96"},
+            'steps': [
+                {'range': [0, 25], 'color': "#e8f5e9"},
+                {'range': [25, 50], 'color': "#fff9c4"},
+                {'range': [50, 75], 'color': "#ffe0b2"},
+                {'range': [75, 100], 'color': "#ffcdd2"}
+            ]
+        }
     ))
-    
-    fig_profile.update_layout(
-        height=350,
-        title="Customer Attributes",
-        xaxis_title="Value",
-        showlegend=False,
-        margin=dict(l=150, r=100, t=50, b=50)
-    )
-    st.plotly_chart(fig_profile, use_container_width=True)
+    fig_gauge.update_layout(height=380, margin=dict(l=0, r=0, t=50, b=0))
+    st.plotly_chart(fig_gauge, use_container_width=True)
 
     st.divider()
 
